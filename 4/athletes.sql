@@ -15,3 +15,21 @@ CREATE TABLE `athletes`
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+CREATE TABLE `results`
+(
+    `COMPETITION_ID` int(11)     DEFAULT NULL,
+    `ATHLET_ID`      int(11)     DEFAULT NULL,
+    `RESULT`         varchar(25) DEFAULT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+
+--
+-- Выборка данных
+--
+
+SELECT FULL_NAME
+FROM athletes
+         JOIN results ON ATHLET_ID = ID
+GROUP BY FULL_NAME
+ORDER BY COUNT(COMPETITION_ID) DESC
+LIMIT 5
